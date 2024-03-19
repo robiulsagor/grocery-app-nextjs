@@ -1,11 +1,15 @@
 "use client";
 
+import { getAllCategories } from "@/app/utils/GlobalAPI";
 import { LayoutGrid, Search, ShoppingBasket } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Nav() {
   const [showCategory, setShowCategory] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  console.log(categories);
 
   // this is used for when category dropdown is shown,
   // add a overlay bg and make the body fixed.
@@ -28,10 +32,14 @@ export default function Nav() {
     }
   }, [showCategory]);
 
+  useEffect(() => {
+    getAllCategories().then((res) => setCategories(res));
+  }, []);
+
   return (
     <div className="shadow-sm px-5 py-5 flex items-center justify-between">
       <div className="flex gap-4 lg:gap-8 items-center ">
-        <div className="w-[100px] md:w-[120px] lg:w-[150px]">
+        <div className="w-[100px] md:w-[120px] lg:w-[150px] h-auto">
           <Image src="/logo.png" width={150} height={100} alt="logo" />
         </div>
 
@@ -54,18 +62,25 @@ export default function Nav() {
                 Browse Categories
               </h2>
               <ul className="flex flex-col">
-                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
-                  Profile
-                </li>
-                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
-                  Account
-                </li>
-                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
-                  Log Out
-                </li>
-                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
-                  Profile
-                </li>
+                {categories.length > 0 &&
+                  categories.map((category) => (
+                    <li
+                      key={category.id}
+                      className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded flex gap-4 items-center text-sm"
+                    >
+                      <Image
+                        src={
+                          "http://localhost:1337" +
+                          category?.attributes?.icon?.data[0]?.attributes?.url
+                        }
+                        width={24}
+                        height={24}
+                        alt="category img"
+                      />
+
+                      {category?.attributes?.name}
+                    </li>
+                  ))}
               </ul>{" "}
             </div>
           </div>
