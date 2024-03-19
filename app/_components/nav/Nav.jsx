@@ -66,7 +66,7 @@ export default function Nav() {
                   categories.map((category) => (
                     <li
                       key={category.id}
-                      className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded flex gap-4 items-center text-sm"
+                      className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded flex gap-4 items-center text-sm mb-1 transition-all duration-300"
                     >
                       <Image
                         src={
