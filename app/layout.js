@@ -1,8 +1,8 @@
-import { Lato } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Nav from "./_components/nav/Nav";
 import "./globals.css";
 
-const lato = Lato({ subsets: ["latin"], weight: "400" });
+const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
   title: "Grocery Store",
@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={lato.className}>
+      <body className={poppins.className}>
         <Nav />
         {children}
       </body>

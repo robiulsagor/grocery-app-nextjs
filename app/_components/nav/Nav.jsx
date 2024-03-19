@@ -35,7 +35,7 @@ export default function Nav() {
           <Image src="/logo.png" width={150} height={100} alt="logo" />
         </div>
 
-        <div className="relative">
+        <div className="relative  z-30 select-none">
           <div
             className="hidden sm:flex gap-2 items-center bg-slate-200 px-10 py-2 rounded-full cursor-pointer "
             onClick={() => setShowCategory((prev) => !prev)}
@@ -45,17 +45,29 @@ export default function Nav() {
           </div>
 
           <div
-            className={`bg-white border p-3 rounded-lg absolute top-[110%] left-0 w-full z-50 ${
-              showCategory ? "" : "hidden"
+            className={`bg-white border  rounded-lg absolute   left-0 w-full p-1 z-20 transition-all duration-300 overflow-hidden ${
+              showCategory ? "scale-1 top-[110%]" : " scale-0  top-[0%]"
             }`}
           >
-            <h2 className="text-center font-bold text-sm">Browse Categories</h2>
-            <ul>
-              <li>Profile</li>
-              <li>Account</li>
-              <li>Logout</li>
-              <li>Profile</li>
-            </ul>
+            <div>
+              <h2 className="text-center font-bold text-sm mb-1 p-2 border-b ">
+                Browse Categories
+              </h2>
+              <ul className="flex flex-col">
+                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
+                  Profile
+                </li>
+                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
+                  Account
+                </li>
+                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
+                  Log Out
+                </li>
+                <li className="py-1 px-2 hover:bg-slate-200 cursor-pointer rounded ">
+                  Profile
+                </li>
+              </ul>{" "}
+            </div>
           </div>
         </div>
 
